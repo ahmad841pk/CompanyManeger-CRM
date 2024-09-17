@@ -8,7 +8,7 @@ use App\Http\Requests\Authentication\SignInRequest;
 use App\Http\Resources\UserTransformer;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\JsonResponse;
-
+use Illuminate\Support\Facades\Auth;
 
 class AuthenticationController extends Controller
 {
@@ -36,8 +36,12 @@ class AuthenticationController extends Controller
         return apiResponse()->meta("token", $strToken)->success(new UserTransformer($objUser));
     }
 
-    public function Logout(): JsonResponse
+    public function logout(): JsonResponse
     {
-        return apiResponse()->logout()->success("You Have Successfully Logged Out.");
+        if (Auth::user()) {
+            Auth::user()->tokens()->delete();
+            return apiResponse()->logout()->success("You Have Successfully Logged Out.");
+        }
+        return apiResponse()->success("something went worng.");
     }
 }
