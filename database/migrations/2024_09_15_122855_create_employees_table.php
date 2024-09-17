@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('last_name');
             $table->string("email")->unique();
             $table->string('phone')->nullable();
-            $table->foreignId('company')->nullable();
-            $table->foreign('company')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreignId('company_id')->nullable();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
         });
     }

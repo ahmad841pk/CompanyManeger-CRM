@@ -29,8 +29,9 @@ class EmployeeService implements EmployeeContract
             'last_name' => $last_name,
             'email' => $email,
             'phone' => $phone,
-            'company' => $company_id
+            'company_id' => $company_id
         ]);
+        $objEmployee->refresh();
         return $objEmployee;
     }
 
@@ -57,8 +58,8 @@ class EmployeeService implements EmployeeContract
         if ($request->website && $objEmployee->website !== $request->website) {
             $objEmployee->website = $request->website;
         }
-        if ($request->company_id && $objEmployee->company !== $request->company_id) {
-            $objEmployee->company = $request->company_id;
+        if ($request->company_id) {
+            $objEmployee->company()->associate($request->company_id);
         }
 
         $objEmployee->save();

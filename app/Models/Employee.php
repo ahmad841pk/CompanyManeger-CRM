@@ -14,12 +14,18 @@ class Employee extends Model
         'last_name',
         'email',
         'phone',
-        'company'
+        'company_id'
+    ];
+
+    protected $with = [
+        'company',
+
+
     ];
 
     public function company()
     {
-        return $this->belongsTo(Company::class, 'company');
+        return $this->belongsTo(Company::class, 'company_id');
     }
 }
 

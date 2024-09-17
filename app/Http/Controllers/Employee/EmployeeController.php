@@ -37,7 +37,7 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
     {
-        $objEmployee = $this->objEmployeeService->store($request->first_name, $request->last_name, $request->email, $request->phone, $request->Employee);
+        $objEmployee = $this->objEmployeeService->store($request->first_name, $request->last_name, $request->email, $request->phone, $request->company_id);
 
         return apiResponse()->success(new EmployeeTransformer($objEmployee));
     }

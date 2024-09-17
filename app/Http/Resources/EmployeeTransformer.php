@@ -20,7 +20,9 @@ class EmployeeTransformer extends JsonResource
             "last_name" => $this->last_name,
             "email" => $this->email,
             "phone" => $this->phone,
-            "company" => $this->company ? new CompanyTransformer($this->company) : null,
+            'company' => $this->whenLoaded('company', function () {
+                return new CompanyTransformer($this->company);
+            }),
         ];
     }
 }
