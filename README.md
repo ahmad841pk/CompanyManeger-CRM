@@ -11,7 +11,7 @@
 - password = password
 
 ## Company Api (protected)
- - host/api/compnay (POST/GET/PATCH/DELETE)
+ - host/api/company (POST/GET/PATCH/DELETE)
 
 #### Company Fillable
  -  [  name (required) , email (required), logo(min 100x100), website ]
